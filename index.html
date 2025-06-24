@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlbumAI - Transform what you see to what you say</title>
+    <meta name="description" content="AlbumAI is a revolutionary AI app that transforms your photos into meaningful text content. Photos to Words - Make every photo searchable.">
+    <meta name="keywords" content="AlbumAI, AI, Photos to Words, iOS App, Artificial Intelligence, Photo Management">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="AlbumAI - Transform what you see to what you say">
+    <meta property="og:description" content="Transform your photos into meaningful text content, making every photo searchable.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://albumai.net">
+    <meta property="og:image" content="https://albumai.net/img/logo.png">
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/icon.png">
+    
+    <style>
+        :root {
+            --primary-color: #996543;
+            --secondary-color: #D6B089;
+            --accent-color: #D6B089;
+            --text-primary: #121212;
+            --text-secondary: #666666;
+            --text-light: #ffffff;
+            --background: #ffffff;
+            --background-dark: #121212;
+            --surface: #f8f6f3;
+            --surface-dark: #1a1a1a;
+            --border: #e0e0e0;
+            --border-dark: #333333;
+            --gradient: linear-gradient(135deg, #996543 0%, #D6B089 100%);
+            --gradient-reverse: linear-gradient(135deg, #D6B089 0%, #996543 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(18, 18, 18, 0.1);
+        }
+
+        .language-switcher button {
+            background: none;
+            border: none;
+            padding: 6px 12px;
+            margin: 0 2px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .language-switcher button.active {
+            background: var(--gradient);
+            color: var(--text-light);
+            box-shadow: 0 2px 8px rgba(153, 101, 67, 0.3);
+        }
+
+        .language-switcher button:not(.active) {
+            color: var(--text-secondary);
+        }
+
+        .language-switcher button:hover:not(.active) {
+            background: var(--surface);
+            color: var(--text-primary);
+        }
+
+        /* Language Content */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 20px rgba(18, 18, 18, 0.08);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo img {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .download-btn {
+            background: var(--gradient);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--surface) 0%, var(--background) 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(153, 101, 67, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            padding: 15px 30px;
+            border: 2px solid var(--primary-color);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* App Screenshots Slideshow */
+        .screenshots-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(153, 101, 67, 0.2);
+            border: 2px solid var(--border);
+        }
+
+        .slideshow {
+            position: relative;
+            width: 100%;
+            height: 500px;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slideshow-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--border);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--primary-color);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: var(--background);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: var(--text-primary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(153, 101, 67, 0.15);
+            border-color: var(--secondary-color);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Experience Video Section */
+        .experience-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--surface) 0%, var(--background) 100%);
+        }
+
+        .experience-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .experience-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .experience-text p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .video-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(153, 101, 67, 0.2);
+            border: 2px solid var(--border);
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Premium Section */
+        .premium-section {
+            padding: 80px 0;
+            background: var(--background-dark);
+            color: var(--text-light);
+        }
+
+        .premium-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .premium-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .premium-text p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .premium-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .premium-features li {
+            padding: 10px 0;
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .premium-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--background-dark);
+            color: var(--text-light);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero .description {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .experience-content,
+            .premium-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .slideshow {
+                height: 400px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .experience-text h2,
+            .premium-text h2 {
+                font-size: 2rem;
+            }
+
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+            }
+
+            .language-switcher button {
+                padding: 4px 8px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button onclick="switchLanguage('en')" class="lang-btn active" data-lang="en">EN</button>
+        <button onclick="switchLanguage('zh')" class="lang-btn" data-lang="zh">中文</button>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <img src="img/logo.png" alt="AlbumAI Logo">
+                    <span>AlbumAI</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#features" class="nav-link" data-en="Features" data-zh="功能">Features</a></li>
+                    <li><a href="#experience" class="nav-link" data-en="Experience" data-zh="體驗">Experience</a></li>
+                    <li><a href="#premium" class="nav-link" data-en="Premium" data-zh="高級版">Premium</a></li>
+                    <li><a href="PrivacyPolicy.html" class="nav-link" data-en="Privacy" data-zh="隱私">Privacy</a></li>
+                </ul>
+                <a href="#download" class="download-btn" data-en="Download" data-zh="下載">Download</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <!-- English Content -->
+            <div class="lang-content active" data-lang="en">
+                <h1>Transform what you see to what you say</h1>
+                <p class="subtitle">Photos to Words</p>
+                <p class="description">AlbumAI is a revolutionary AI app that transforms your photos into meaningful text content. Make every photo searchable and tell the story behind every moment.</p>
+                
+                <div class="cta-buttons">
+                    <a href="#download" class="btn-primary">Download for iOS</a>
+                    <a href="#experience" class="btn-secondary">Watch Demo</a>
+                </div>
+            </div>
+
+            <!-- Chinese Content -->
+            <div class="lang-content" data-lang="zh">
+                <h1>將您所見轉化為您所說</h1>
+                <p class="subtitle">照片轉文字</p>
+                <p class="description">AlbumAI 是一款革命性的 AI 應用程式，將您的照片轉化為有意義的文字內容。讓每張照片都能被搜尋，訴說每個時刻背後的故事。</p>
+                
+                <div class="cta-buttons">
+                    <a href="#download" class="btn-primary">iOS 下載</a>
+                    <a href="#experience" class="btn-secondary">觀看示範</a>
+                </div>
+            </div>
+
+            <!-- App Screenshots Slideshow -->
+            <div class="screenshots-container">
+                <div class="slideshow">
+                    <div class="slide active">
+                        <img src="img/slideshow1.png" alt="AlbumAI Screenshot 1">
+                    </div>
+                    <div class="slide">
+                        <img src="img/slideshow2.png" alt="AlbumAI Screenshot 2">
+                    </div>
+                    <div class="slide">
+                        <img src="img/slideshow3.png" alt="AlbumAI Screenshot 3">
+                    </div>
+                    <div class="slide">
+                        <img src="img/slideshow4.png" alt="AlbumAI Screenshot 4">
+                    </div>
+                </div>
+                <div class="slideshow-dots">
+                    <span class="dot active" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <!-- English Content -->
+            <div class="lang-content active" data-lang="en">
+                <h2 class="section-title">Powerful Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Photos to Words</h3>
+                        <p>Instantly transform your photos into rich, meaningful text content using advanced AI technology.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Smart Search</h3>
+                        <p>Search your memories like never before. Find any photo by searching through the generated text content.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>Multiple Styles</h3>
+                        <p>Choose from 7 different writing styles: Descriptive, Narrative, Poetic, Humorous, Emotional, Philosophical, and Dialogue.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">☁️</div>
+                        <h3>Cloud Sync</h3>
+                        <p>Seamlessly sync your content across all your devices with secure cloud storage.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏷️</div>
+                        <h3>Smart Tags</h3>
+                        <p>Automatically generated tags help organize and categorize your memories for easy discovery.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Native iOS</h3>
+                        <p>Built specifically for iOS with native performance, beautiful design, and seamless integration.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chinese Content -->
+            <div class="lang-content" data-lang="zh">
+                <h2 class="section-title">強大功能</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3>照片轉文字</h3>
+                        <p>使用先進的 AI 技術，瞬間將您的照片轉化為豐富且有意義的文字內容。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>智慧搜尋</h3>
+                        <p>前所未有的記憶搜尋體驗。透過生成的文字內容搜尋任何照片。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>多種風格</h3>
+                        <p>選擇 7 種不同的寫作風格：描述性、敘事性、詩意、幽默、情感、哲學和對話。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">☁️</div>
+                        <h3>雲端同步</h3>
+                        <p>透過安全的雲端儲存，在所有裝置間無縫同步您的內容。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏷️</div>
+                        <h3>智慧標籤</h3>
+                        <p>自動生成的標籤幫助整理和分類您的記憶，讓發現變得簡單。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>原生 iOS</h3>
+                        <p>專為 iOS 打造，具備原生效能、美麗設計和無縫整合。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Video Section -->
+    <section id="experience" class="experience-section">
+        <div class="container">
+            <div class="experience-content">
+                <!-- English Content -->
+                <div class="lang-content active" data-lang="en">
+                    <div class="experience-text">
+                        <h2>Experience the Magic</h2>
+                        <p>See how AlbumAI transforms a simple photo into a rich, searchable story. Our AI understands not just what's in your photo, but the emotion and context behind it.</p>
+                        <p>Watch as your visual memories become fully searchable text content, making every moment discoverable and every story tellable.</p>
+                        <a href="#download" class="btn-primary">Try It Now</a>
+                    </div>
+                </div>
+
+                <!-- Chinese Content -->
+                <div class="lang-content" data-lang="zh">
+                    <div class="experience-text">
+                        <h2>體驗魔法時刻</h2>
+                        <p>看看 AlbumAI 如何將一張簡單的照片轉化為豐富且可搜尋的故事。我們的 AI 不僅理解照片中的內容，更能感受其背後的情感和背景。</p>
+                        <p>觀看您的視覺記憶如何變成完全可搜尋的文字內容，讓每個時刻都能被發現，每個故事都能被訴說。</p>
+                        <a href="#download" class="btn-primary">立即試用</a>
+                    </div>
+                </div>
+
+                <div class="video-container">
+                    <video autoplay muted loop playsinline poster="img/slideshow1.png">
+                        <source src="img/Experience.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Section -->
+    <section id="premium" class="premium-section">
+        <div class="container">
+            <div class="premium-content">
+                <div class="video-container">
+                    <video autoplay muted loop playsinline poster="img/slideshow2.png">
+                        <source src="img/upgradePremium.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <!-- English Content -->
+                <div class="lang-content active" data-lang="en">
+                    <div class="premium-text">
+                        <h2>Unlock Premium Features</h2>
+                        <p>Upgrade to Premium and unlock the full potential of AlbumAI with unlimited AI generations and advanced features.</p>
+                        
+                        <ul class="premium-features">
+                            <li>Unlimited AI story generation</li>
+                            <li>All 7 writing styles available</li>
+                            <li>Advanced search capabilities</li>
+                            <li>Priority cloud sync</li>
+                            <li>Export to PDF</li>
+                            <li>Premium support</li>
+                        </ul>
+                        
+                        <a href="#download" class="btn-primary">Upgrade Now</a>
+                    </div>
+                </div>
+
+                <!-- Chinese Content -->
+                <div class="lang-content" data-lang="zh">
+                    <div class="premium-text">
+                        <h2>解鎖高級功能</h2>
+                        <p>升級至高級版，解鎖 AlbumAI 的全部潛力，享受無限制的 AI 生成和進階功能。</p>
+                        
+                        <ul class="premium-features">
+                            <li>無限制 AI 故事生成</li>
+                            <li>所有 7 種寫作風格</li>
+                            <li>進階搜尋功能</li>
+                            <li>優先雲端同步</li>
+                            <li>PDF 導出功能</li>
+                            <li>高級客戶支援</li>
+                        </ul>
+                        
+                        <a href="#download" class="btn-primary">立即升級</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <!-- English Content -->
+                    <div class="lang-content active" data-lang="en">
+                        <h3>AlbumAI</h3>
+                        <p>Transform what you see to what you say. Make every photo searchable with AI-powered text generation.</p>
+                    </div>
+                    <!-- Chinese Content -->
+                    <div class="lang-content" data-lang="zh">
+                        <h3>AlbumAI</h3>
+                        <p>將您所見轉化為您所說。透過 AI 驅動的文字生成，讓每張照片都能被搜尋。</p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <!-- English Content -->
+                    <div class="lang-content active" data-lang="en">
+                        <h3>Product</h3>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#premium">Premium</a></li>
+                            <li><a href="#download">Download</a></li>
+                            <li><a href="#experience">Demo</a></li>
+                        </ul>
+                    </div>
+                    <!-- Chinese Content -->
+                    <div class="lang-content" data-lang="zh">
+                        <h3>產品</h3>
+                        <ul>
+                            <li><a href="#features">功能</a></li>
+                            <li><a href="#premium">高級版</a></li>
+                            <li><a href="#download">下載</a></li>
+                            <li><a href="#experience">示範</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <!-- English Content -->
+                    <div class="lang-content active" data-lang="en">
+                        <h3>Support</h3>
+                        <ul>
+                            <li><a href="mailto:support@albumai.net">Help Center</a></li>
+                            <li><a href="mailto:contact@albumai.net">Contact Us</a></li>
+                            <li><a href="PrivacyPolicy.html">Privacy Policy</a></li>
+                            <li><a href="TermsOfService.html">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    <!-- Chinese Content -->
+                    <div class="lang-content" data-lang="zh">
+                        <h3>支援</h3>
+                        <ul>
+                            <li><a href="mailto:support@albumai.net">幫助中心</a></li>
+                            <li><a href="mailto:contact@albumai.net">聯繫我們</a></li>
+                            <li><a href="PrivacyPolicy.html">隱私政策</a></li>
+                            <li><a href="TermsOfService.html">服務條款</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <!-- English Content -->
+                    <div class="lang-content active" data-lang="en">
+                        <h3>Connect</h3>
+                        <ul>
+                            <li><a href="mailto:hello@albumai.net">Email</a></li>
+                            <li><a href="#" id="download">App Store</a></li>
+                        </ul>
+                    </div>
+                    <!-- Chinese Content -->
+                    <div class="lang-content" data-lang="zh">
+                        <h3>聯繫</h3>
+                        <ul>
+                            <li><a href="mailto:hello@albumai.net">電子郵件</a></li>
+                            <li><a href="#" id="download">App Store</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <!-- English Content -->
+                <div class="lang-content active" data-lang="en">
+                    <p>&copy; 2025 AlbumAI. All rights reserved. Transform what you see to what you say.</p>
+                </div>
+                <!-- Chinese Content -->
+                <div class="lang-content" data-lang="zh">
+                    <p>&copy; 2025 AlbumAI. 版權所有。將您所見轉化為您所說。</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language Switching
+        function switchLanguage(lang) {
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+            
+            // Update content
+            document.querySelectorAll('.lang-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll(`[data-lang="${lang}"]`).forEach(content => {
+                content.classList.add('active');
+            });
+            
+            // Update navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const text = link.getAttribute(`data-${lang}`);
+                if (text) {
+                    link.textContent = text;
+                }
+            });
+            
+            // Update download button
+            const downloadBtn = document.querySelector('.download-btn');
+            if (downloadBtn) {
+                downloadBtn.textContent = lang === 'en' ? 'Download' : '下載';
+            }
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang === 'en' ? 'en' : 'zh-TW';
+            
+            // Update page title and meta description
+            if (lang === 'en') {
+                document.title = 'AlbumAI - Transform what you see to what you say';
+                document.querySelector('meta[name="description"]').setAttribute('content', 
+                    'AlbumAI is a revolutionary AI app that transforms your photos into meaningful text content. Photos to Words - Make every photo searchable.');
+            } else {
+                document.title = 'AlbumAI - 將您所見轉化為您所說';
+                document.querySelector('meta[name="description"]').setAttribute('content', 
+                    'AlbumAI 是一款革命性的 AI 應用程式，將您的照片轉化為有意義的文字內容。照片轉文字 - 讓每張照片都能被搜尋。');
+            }
+            
+            // Save language preference
+            localStorage.setItem('albumai-language', lang);
+        }
+        
+        // Load saved language preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('albumai-language') || 'en';
+            if (savedLang !== 'en') {
+                switchLanguage(savedLang);
+            }
+        });
+
+        // Slideshow functionality
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function currentSlide(index) {
+            slideIndex = index - 1;
+            showSlide(slideIndex);
+        }
+
+        function nextSlide() {
+            slideIndex = (slideIndex + 1) % slides.length;
+            showSlide(slideIndex);
+        }
+
+        // Auto-advance slideshow
+        setInterval(nextSlide, 4000);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 30px rgba(18, 18, 18, 0.12)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(18, 18, 18, 0.08)';
+            }
+        });
+    </script>
+</body>
+</html> 
