@@ -500,6 +500,98 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
+        /* Coming Soon Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: var(--background);
+            margin: 15% auto;
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--primary-color);
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .modal h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modal p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .modal-notify-btn {
+            background: var(--gradient);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .modal-notify-btn:hover {
+            transform: translateY(-2px);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
@@ -585,7 +677,7 @@
                     <li><a href="#premium" class="nav-link" data-en="Premium" data-zh="高級版">Premium</a></li>
                     <li><a href="PrivacyPolicy.html" class="nav-link" data-en="Privacy" data-zh="隱私">Privacy</a></li>
                 </ul>
-                <a href="#download" class="download-btn" data-en="Download" data-zh="下載">Download</a>
+                <a href="#" class="download-btn" data-en="Download" data-zh="下載" onclick="showComingSoonModal()">Download</a>
             </nav>
         </div>
     </header>
@@ -600,7 +692,7 @@
                 <p class="description">AlbumAI is a revolutionary AI app that transforms your photos into meaningful text content. Make every photo searchable and tell the story behind every moment.</p>
                 
                 <div class="cta-buttons">
-                    <a href="#download" class="btn-primary">Download for iOS</a>
+                    <a href="#" class="btn-primary" onclick="showComingSoonModal()">Download for iOS</a>
                     <a href="#experience" class="btn-secondary">Watch Demo</a>
                 </div>
             </div>
@@ -612,7 +704,7 @@
                 <p class="description">AlbumAI 是一款革命性的 AI 應用程式，將您的照片轉化為有意義的文字內容。讓每張照片都能被搜尋，訴說每個時刻背後的故事。</p>
                 
                 <div class="cta-buttons">
-                    <a href="#download" class="btn-primary">iOS 下載</a>
+                    <a href="#" class="btn-primary" onclick="showComingSoonModal()">iOS 下載</a>
                     <a href="#experience" class="btn-secondary">觀看示範</a>
                 </div>
             </div>
@@ -732,7 +824,7 @@
                         <h2>Experience the Magic</h2>
                         <p>See how AlbumAI transforms a simple photo into a rich, searchable story. Our AI understands not just what's in your photo, but the emotion and context behind it.</p>
                         <p>Watch as your visual memories become fully searchable text content, making every moment discoverable and every story tellable.</p>
-                        <a href="#download" class="btn-primary">Try It Now</a>
+                        <a href="#" class="btn-primary" onclick="showComingSoonModal()">Try It Now</a>
                     </div>
                 </div>
 
@@ -742,7 +834,7 @@
                         <h2>體驗魔法時刻</h2>
                         <p>看看 AlbumAI 如何將一張簡單的照片轉化為豐富且可搜尋的故事。我們的 AI 不僅理解照片中的內容，更能感受其背後的情感和背景。</p>
                         <p>觀看您的視覺記憶如何變成完全可搜尋的文字內容，讓每個時刻都能被發現，每個故事都能被訴說。</p>
-                        <a href="#download" class="btn-primary">立即試用</a>
+                        <a href="#" class="btn-primary" onclick="showComingSoonModal()">立即試用</a>
                     </div>
                 </div>
 
@@ -782,7 +874,7 @@
                             <li>Premium support</li>
                         </ul>
                         
-                        <a href="#download" class="btn-primary">Upgrade Now</a>
+                        <a href="#" class="btn-primary" onclick="showComingSoonModal()">Upgrade Now</a>
                     </div>
                 </div>
 
@@ -801,7 +893,7 @@
                             <li>高級客戶支援</li>
                         </ul>
                         
-                        <a href="#download" class="btn-primary">立即升級</a>
+                        <a href="#" class="btn-primary" onclick="showComingSoonModal()">立即升級</a>
                     </div>
                 </div>
             </div>
@@ -877,7 +969,7 @@
                         <h3>Connect</h3>
                         <ul>
                             <li><a href="mailto:hello@albumai.net">Email</a></li>
-                            <li><a href="#" id="download">App Store</a></li>
+                            <li><a href="#" onclick="showComingSoonModal()">App Store</a></li>
                         </ul>
                     </div>
                     <!-- Chinese Content -->
@@ -885,7 +977,7 @@
                         <h3>聯繫</h3>
                         <ul>
                             <li><a href="mailto:hello@albumai.net">電子郵件</a></li>
-                            <li><a href="#" id="download">App Store</a></li>
+                            <li><a href="#" onclick="showComingSoonModal()">App Store</a></li>
                         </ul>
                     </div>
                 </div>
@@ -903,6 +995,31 @@
             </div>
         </div>
     </footer>
+
+    <!-- Coming Soon Modal -->
+    <div id="comingSoonModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeComingSoonModal()">&times;</span>
+            
+            <!-- English Content -->
+            <div class="lang-content active" data-lang="en">
+                <div class="modal-icon">🚀</div>
+                <h2>Coming Soon to iOS</h2>
+                <p>AlbumAI is currently in development and will be available on the App Store soon!</p>
+                <p>We're working hard to bring you the best photo-to-text AI experience.</p>
+                <button class="modal-notify-btn" onclick="notifyMe()">Notify Me When Ready</button>
+            </div>
+
+            <!-- Chinese Content -->
+            <div class="lang-content" data-lang="zh">
+                <div class="modal-icon">🚀</div>
+                <h2>即將登陸 iOS</h2>
+                <p>AlbumAI 目前正在開發中，即將在 App Store 上架！</p>
+                <p>我們正在努力為您帶來最佳的照片轉文字 AI 體驗。</p>
+                <button class="modal-notify-btn" onclick="notifyMe()">準備就緒時通知我</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Language Switching
@@ -1010,6 +1127,42 @@
             } else {
                 header.style.background = 'rgba(255, 255, 255, 0.98)';
                 header.style.boxShadow = '0 2px 20px rgba(18, 18, 18, 0.08)';
+            }
+        });
+
+        // Coming Soon Modal Functions
+        function showComingSoonModal() {
+            document.getElementById('comingSoonModal').style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeComingSoonModal() {
+            document.getElementById('comingSoonModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        function notifyMe() {
+            const currentLang = localStorage.getItem('albumai-language') || 'en';
+            const message = currentLang === 'en' 
+                ? 'Thank you for your interest! We\'ll notify you when AlbumAI is available on the App Store.' 
+                : '感謝您的關注！AlbumAI 在 App Store 上架時我們會通知您。';
+            
+            alert(message);
+            closeComingSoonModal();
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('comingSoonModal');
+            if (event.target === modal) {
+                closeComingSoonModal();
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeComingSoonModal();
             }
         });
     </script>
