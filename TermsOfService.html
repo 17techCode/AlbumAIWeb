@@ -48,13 +48,6 @@
             text-align: center;
         }
 
-        .last-updated {
-            text-align: center;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            font-size: 1rem;
-        }
-
         .content {
             background: var(--surface);
             border-radius: 20px;
@@ -97,10 +90,6 @@
             margin-bottom: 8px;
         }
 
-        ul ul li {
-            margin-bottom: 4px;
-        }
-
         .meta-info {
             background: var(--primary-color);
             color: white;
@@ -115,7 +104,7 @@
         }
 
         .reasonable-use {
-            margin: 30px 25px;
+            margin: 30px 0;
             padding: 20px;
             background: rgba(255, 193, 7, 0.1);
             border-left: 4px solid #FFC107;
@@ -191,17 +180,12 @@
             .container {
                 padding: 0 15px;
             }
-
             .page-title {
                 font-size: 2rem;
             }
-
             .content {
                 padding: 25px;
             }
-
-
-
             .footer-links {
                 flex-direction: column;
                 gap: 15px;
@@ -211,23 +195,23 @@
 </head>
 <body>
 
-
     <!-- Main Content -->
     <main>
         <div class="container">
             <h1 class="page-title">AlbumAI — Terms of Service</h1>
 
-            <div class="meta-info">
-                <strong>Effective Date:</strong> 2025.07.01<br>
-                <strong>Service Provider:</strong> AlbumAI
-            </div>
+            
 
             <div class="content">
+                <div>
+                    <strong>Effective Date:</strong> 2025.07.01<br>
+                    <strong>Service Provider:</strong> AlbumAI
+                </div>
                 <hr>
                 <div class="empty-line"></div>
 
                 <h2>1. Overview</h2>
-                <p>These Terms of Service ("Terms") govern your access to and use of the AlbumAI application, website, and related services ("Service"). By using AlbumAI, you agree to these Terms. If you do not agree, you must not use the Service.</p>
+                <p>These Terms of Service (“Terms”) govern your access to and use of the AlbumAI application, website, and related services ("Service"). By using AlbumAI, you agree to these Terms. If you do not agree, you must not use the Service.</p>
 
                 <hr>
                 <div class="empty-line"></div>
@@ -239,10 +223,8 @@
                 <div class="empty-line"></div>
 
                 <h2>3. Your Content</h2>
-                <ul>
-                    <li>You retain full ownership of all content you upload, including photos, images, and metadata ("User Content").</li>
-                    <li>By uploading content, you grant us a limited, non-exclusive, worldwide license to store, process, analyze, and transform your content solely for the purpose of providing AlbumAI's features (including AI-generated captions, searchable text, and smart indexing).</li>
-                </ul>
+                <p>You retain full ownership of all content you upload, including photos, images, and metadata ("User Content").</p>
+                <p>By uploading content, you grant us a limited, non-exclusive, worldwide license to store, process, analyze, and transform your content solely for the purpose of providing AlbumAI’s features (including AI-generated captions, searchable text, and smart indexing).</p>
 
                 <hr>
                 <div class="empty-line"></div>
@@ -254,7 +236,7 @@
                     <li>Reverse engineer, decompile, disassemble, modify, or attempt to access the source code of AlbumAI.</li>
                     <li>Use AlbumAI for any unlawful or unauthorized purposes.</li>
                     <li>Use automated tools (including bots, scripts, crawlers, or data scrapers) to access or interact with the Service, except through authorized APIs with prior written consent.</li>
-                    <li>Engage in excessive or abnormal usage that exceeds <strong>reasonable personal, individual use</strong> and places undue burden on AlbumAI's infrastructure.</li>
+                    <li>Engage in excessive or abnormal usage that exceeds reasonable personal, individual use and places undue burden on AlbumAI’s infrastructure.</li>
                     <li>Upload or process large volumes of content for the primary purpose of:
                         <ul>
                             <li>Bulk content generation</li>
@@ -294,18 +276,8 @@
                 <div class="empty-line"></div>
 
                 <h2>7. Fair Use & Commercial Licensing</h2>
-                <p>If you wish to use AlbumAI for commercial, enterprise, or automated business purposes, including but not limited to:</p>
-                <ul>
-                    <li>Business workflows</li>
-                    <li>Commercial media production</li>
-                    <li>Dataset or model creation</li>
-                    <li>Third-party services or integrations</li>
-                    <li>Platform resale or redistribution</li>
-                </ul>
-
-                <p>You must obtain a separate <strong>Commercial License</strong> or <strong>Enterprise Agreement</strong> from AlbumAI. Unauthorized commercial or automated use is strictly prohibited and may result in legal action, suspension of services, and claims for damages.</p>
-
-                <p>Please contact us at <strong>service@albumai.net</strong> for commercial licensing inquiries.</p>
+                <p>If you wish to use AlbumAI for commercial, enterprise, or automated business purposes, including but not limited to business workflows, commercial media production, dataset or model creation, third-party services, or platform resale, you must obtain a separate <strong>Commercial License</strong> or <strong>Enterprise Agreement</strong> from AlbumAI.</p>
+                <p>Unauthorized commercial or automated use is strictly prohibited and may result in legal action, suspension of services, and claims for damages. Please contact us at <strong>service@albumai.net</strong> for commercial licensing inquiries.</p>
 
                 <hr>
                 <div class="empty-line"></div>
@@ -316,8 +288,13 @@
                 <hr>
                 <div class="empty-line"></div>
 
-                <h2>9. Limitation of Liability</h2>
-                <p>AlbumAI is provided "as-is" without warranties of any kind. To the fullest extent permitted by law, we disclaim any liability for indirect, incidental, or consequential damages arising from your use of the Service.</p>
+                <h2>9. Limitation of Liability and Disclaimer of Warranties</h2>
+                <ul>
+                    <li><strong>"As-Is" and "As-Available" Warranty Disclaimer:</strong> The Service, including all AI-generated outputs, is provided on an “as-is” and “as-available” basis. AlbumAI expressly disclaims all warranties of any kind, whether express or implied.</li>
+                    <li><strong>AI Performance Accuracy:</strong> AlbumAI does not warrant that AI-generated captions, indexing, or searchable text will be accurate, reliable, or error-free. You acknowledge that AI technology is inherently probabilistic and you assume all risk.</li>
+                    <li><strong>Exclusion of Certain Damages:</strong> To the maximum extent permitted by law, AlbumAI shall not be liable for any indirect, incidental, special, or consequential damages, including loss of profits, data, or goodwill.</li>
+                    <li><strong>Cap on Liability:</strong> In no event shall AlbumAI’s total cumulative liability exceed the total amount paid by you to AlbumAI for the Service during the twelve (12) months preceding the event.</li>
+                </ul>
 
                 <hr>
                 <div class="empty-line"></div>
@@ -328,9 +305,25 @@
                 <hr>
                 <div class="empty-line"></div>
 
+                <h2>12. Intellectual Property Rights</h2>
+                <ul>
+                    <li><strong>Ownership of the Service:</strong> AlbumAI and its licensors retain all right, title, and interest in and to the Service, including the application interface, design, software, algorithms, and source code.</li>
+                    <li><strong>License to User Content:</strong> You retain full ownership of your User Content. You grant AlbumAI a non-exclusive, royalty-free, worldwide license to host, use, and modify your content solely for operating and improving the Service.</li>
+                    <li><strong>Feedback License:</strong> If you provide suggestions, you grant AlbumAI an irrevocable, perpetual, royalty-free license to use such feedback for any purpose.</li>
+                    <li><strong>Restrictions on Use:</strong> You are strictly prohibited from attempting to extract the source code or unauthorized use of AlbumAI’s trademarks.</li>
+                </ul>
+
+                <hr>
+                <div class="empty-line"></div>
+
+                <h2>13. Indemnification</h2>
+                <p><strong>User Responsibility:</strong> You agree to indemnify, defend, and hold harmless AlbumAI from any and all claims, liabilities, damages, and expenses arising from your breach of these Terms, your User Content, or your unauthorized commercial use of the Service.</p>
+
+                <hr>
+                <div class="empty-line"></div>
+
                 <h2>11. Contact</h2>
-                <div class="contact-info">
-                    <h3>Contact Us</h3>
+                <div>
                     <p>For legal, privacy, or support inquiries, please contact: <strong>service@albumai.net</strong></p>
                 </div>
 
@@ -346,10 +339,11 @@
                 <a href="index.html">Home</a>
                 <a href="PrivacyPolicy.html">Privacy Policy</a>
                 <a href="TermsOfService.html">Terms of Service</a>
-                <a href="mailto:support@albumai.net">Support</a>
+                <a href="SubscriptionTerms.html">Subscription Terms</a>
+                <a href="mailto:service@albumai.net">Support</a>
             </div>
             <p>&copy; 2025 AlbumAI. All rights reserved.</p>
         </div>
     </footer>
 </body>
-</html> 
+</html>
