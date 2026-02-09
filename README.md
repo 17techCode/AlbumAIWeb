@@ -1,8 +1,34 @@
-# AlbumAI Website
+# AlbumAI: Photos to Words
 
-**Transform what you see to what you say.**
+**Upgrade Your Album with AI.**
+
+> *Worried the stories behind your photos are fading?*  
+> *We know how heartbreaking it is when memories slip away.*  
+> *AlbumAI instantly turns your photos into beautiful stories—so you'll never have to worry about forgetting your favorite moments again.*
 
 這是 AlbumAI 的官方網站，展示我們革命性的 AI 驅動照片轉文字應用程式。
+
+---
+
+## 📱 產品功能
+
+| 功能 | 說明 |
+|------|------|
+| 🤖 AI 文案生成 | 從任何照片生成 AI 精心撰寫的標題、日記和詩歌 |
+| 📲 即時分享 | 生成可直接分享的故事貼文 |
+| 📖 相簿製作 | 設計精美裝幀、可印刷的相簿書 |
+| 💾 多格式匯出 | 儲存為圖片或 PDF，支援批量匯出 |
+| 🔍 智能搜尋 | 依心情、地點或人物整理、搜尋和重溫回憶 |
+| ✨ 自然流暢 | 即時、自然流暢的文字生成 |
+| 🎨 精美模板 | 乾淨的模板讓每則貼文都更出色 |
+
+---
+
+## 🔑 關鍵字 (ASO)
+
+`photo captions` · `AI captions` · `diary` · `AI Writer` · `Instagram caption maker` · `photo book` · `album maker` · `poem generator` · `story posts`
+
+---
 
 ## 🌐 網站概述
 

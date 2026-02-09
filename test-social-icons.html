@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Icons Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .icon-row {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin: 20px 0;
+        }
+        img {
+            height: 28px;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        img:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>社交圖標測試頁面</h1>
+
+    <div class="test-section">
+        <h2>深色圖標 (Dark Icons)</h2>
+        <div class="icon-row">
+            <span>Share to:</span>
+            <img src="img/socialIcon/instagram_dark.svg" alt="Instagram">
+            <img src="img/socialIcon/facebook_dark.svg" alt="Facebook">
+            <img src="img/socialIcon/X_dark.svg" alt="X (Twitter)">
+            <img src="img/socialIcon/threads_dark.svg" alt="Threads">
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>淺色圖標 (Light Icons)</h2>
+        <div class="icon-row" style="background: #333; padding: 20px; border-radius: 8px;">
+            <span style="color: white;">Share to:</span>
+            <img src="img/socialIcon/instagram_light.svg" alt="Instagram">
+            <img src="img/socialIcon/facebook_light.svg" alt="Facebook">
+            <img src="img/socialIcon/X_light.svg" alt="X (Twitter)">
+            <img src="img/socialIcon/threads_light.svg" alt="Threads">
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>實際 Feature 區塊代碼</h2>
+        <p>這是在 index.html 中使用的相同代碼：</p>
+        <div style="margin-top: 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
+            <span style="font-size: 0.875rem; color: #4A4A4A; font-weight: 500;">Share to:</span>
+            <img src="img/socialIcon/instagram_dark.svg" alt="Instagram" style="height: 28px; opacity: 0.8; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+            <img src="img/socialIcon/facebook_dark.svg" alt="Facebook" style="height: 28px; opacity: 0.8; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+            <img src="img/socialIcon/X_dark.svg" alt="X (Twitter)" style="height: 28px; opacity: 0.8; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+            <img src="img/socialIcon/threads_dark.svg" alt="Threads" style="height: 28px; opacity: 0.8; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>調試信息</h2>
+        <ul>
+            <li>圖標路徑：<code>img/socialIcon/</code></li>
+            <li>文件列表：
+                <ul>
+                    <li>instagram_dark.svg</li>
+                    <li>facebook_dark.svg</li>
+                    <li>X_dark.svg</li>
+                    <li>threads_dark.svg</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+.agent/
+.claude/
+.cursor/
+.playwright-mcp/
+node_modules/
+
+screenshots/
+
+.mcp.json
